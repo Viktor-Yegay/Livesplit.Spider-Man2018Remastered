@@ -1,7 +1,7 @@
 // Contains functionality for load removal & autostart
 state("Spider-Man")
 {
-    bool isInGame : 0x7D4A05C;
+    int loading1 : 0x7AF85D0
 }
 
 startup
@@ -38,7 +38,7 @@ update
 
 isLoading
 {
-    return current.isInGame;
+	return current.loading1 == 1;
 }
 
 exit
