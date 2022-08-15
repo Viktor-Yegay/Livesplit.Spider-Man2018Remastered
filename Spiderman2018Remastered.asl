@@ -1,7 +1,8 @@
-// Contains functionality for load removal & autostart
 state("Spider-Man")
 {
-    int loading1 : 0x7AF85D0
+    int loading : 0x7AF85D0;
+    int inGame  : 0x5D3580C; //0 on Main Menu, 1 when in game
+    
 }
 
 startup
@@ -33,12 +34,17 @@ onStart
 update
 {
 //DEBUG CODE 
-//print(current.objective.ToString()); 
+//print(current.loading.ToString()); 
+}
+
+start
+{
+	return (old.loading == 0 && current.loading == 1 && current.inGame == 1);
 }
 
 isLoading
 {
-	return current.loading1 == 1;
+	return current.loading == 1;
 }
 
 exit
