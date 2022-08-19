@@ -74,8 +74,8 @@ onStart
 update
 {
 //DEBUG CODE 
-print(current.loading.ToString()); 
-print(current.objective.ToString());
+//print(current.loading.ToString()); 
+//print(current.objective.ToString());
 
         //Use cases for each version of the game listed in the State method
 		switch (version) 
