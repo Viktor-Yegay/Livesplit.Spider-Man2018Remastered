@@ -74,8 +74,8 @@ onStart
 update
 {
 //DEBUG CODE 
-//print(current.loading.ToString()); 
-//print(current.objective.ToString());
+print(current.loading.ToString()); 
+print(current.objective.ToString());
 
         //Use cases for each version of the game listed in the State method
 		switch (version) 
@@ -89,7 +89,7 @@ update
 
 start
 {
-	return (current.loading == 0 && current.objective == 648768089);
+	return (old.loading == 0 && current.loading ==  1 && current.objective == 648768089);
 }
 
 split 
