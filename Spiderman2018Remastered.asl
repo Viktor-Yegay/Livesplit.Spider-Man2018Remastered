@@ -99,7 +99,7 @@ split
     (current.objective == 316826671)  && (old.objective != 316826671)  || // Moves from My OTHER Other Job - Keeping the Peace 
     (current.objective == 404089728)  && (old.objective != 404089728)  || // Moves from Keeping the Peace - Something Old, Something New
     (current.objective == 436592259)  && (old.objective != 436592259)  || // Moves from Something Old, Something New - Fisk Hideout & Landmarking
-    (current.objective == 1229283555) && (old.objective != 3777655995) || // Moves from Fisk Hideout & Landmarking - For She's a Jolly Good Fellow
+    (current.objective == 1229283555) && (old.objective != 1229283555) || // Moves from Fisk Hideout & Landmarking - For She's a Jolly Good Fellow
     (current.objective == 13877668)   && (old.objective != 13877668)   || // Moves from For She's A Jolly Good Fellow - Don't Touch The Art
     (current.objective == 3594905414) && (old.objective != 3594905414) || // Moves from Don't Touch The Art - A Shocking Comeback [if dbl, try 3251659580]
     (current.objective == 3472337876) && (old.objective != 3472337876) || // Moves from A Shocking Comeback - The Mask
