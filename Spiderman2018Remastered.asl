@@ -21,8 +21,17 @@ state("Spider-Man", "EGS v1.812")
 state("Spider-Man", "Steam v1.817")
 {
     int loading    : 0x7AF95D0; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A
-    uint objective   : 0x6F3E8D8; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 6F region of memory seems faster, theres a similar one in the 70 region.
+    uint objective : 0x6F3E8D8; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 6F region of memory seems faster, theres a similar one in the 70 region.
 } 
+
+state("Spider-Man", "Steam v1.824")
+{
+    int loading    : 0x7B1A510; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
+    uint objective : 0x6E90258; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
+    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
+    // make sure obj is 0 on main menu
+} 
+
 
 init
 {
@@ -38,6 +47,9 @@ init
             break;
         case 139911168: 
             version = "EGS v1.812";
+            break;
+        case 139980800 : 
+            version = "Steam v1.824";
             break;
     default:
         print("Unknown version detected");
@@ -80,7 +92,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824":
 			vars.loading = current.loading == 1;
 			break;
 	}
@@ -89,7 +101,7 @@ update
 
 start
 {
-	return (old.loading == 0 && current.loading ==  1 && current.objective == 648768089);
+	return (old.objective == 0 && current.objective == 648768089);
 }
 
 split 
