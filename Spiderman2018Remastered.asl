@@ -33,6 +33,14 @@ state("Spider-Man", "Steam v1.824")
 } 
 
 
+state("Spider-Man", "Steam v1.907")
+{
+    int loading    : 0x7B1BA70; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
+    uint objective : 0x6E91288; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
+    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
+    // make sure obj is 0 on main menu
+} 
+
 init
 {
     vars.loading = false;
@@ -50,6 +58,9 @@ init
             break;
         case 139980800 : 
             version = "Steam v1.824";
+            break;
+        case 139984896 : 
+            version = "Steam v1.907";
             break;
     default:
         print("Unknown version detected");
@@ -92,7 +103,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907":
 			vars.loading = current.loading == 1;
 			break;
 	}
@@ -105,7 +116,14 @@ start
 }
 
 split 
-{ 	return   
+{ 	return
+    //Ignore the following commented out objective values, only for testing/updating purposes.
+    // You can scan for the following 4Byte values to find the objective address.
+    // 0 on main menu
+    // 648768089 on first cutscene
+    // 3959482847 on swing tutorial
+    // 1081701888 when the objective marker for "Clearing The Way" pops up
+    // at this point, go back to main menu and search for 0 again. Only gonna be one address remaining
     (current.objective == 1230831290) && (old.objective != 1230831290) || // Moves from Clearing The Way - The Main Event 
 	(current.objective == 911656026)  && (old.objective != 911656026)  || // Moves from The Main Event - My OTHER Other Job 
     (current.objective == 316826671)  && (old.objective != 316826671)  || // Moves from My OTHER Other Job - Keeping the Peace 
