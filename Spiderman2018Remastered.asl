@@ -41,6 +41,14 @@ state("Spider-Man", "Steam v1.907")
     // make sure obj is 0 on main menu
 } 
 
+state("Spider-Man", "Steam v1.919")
+{
+    int loading    : 0x7B1F230; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
+    uint objective : 0x6E94958; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
+    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
+    // make sure obj is 0 on main menu
+} 
+
 init
 {
     vars.loading = false;
@@ -61,6 +69,9 @@ init
             break;
         case 139984896 : 
             version = "Steam v1.907";
+            break;
+        case 140001280 : 
+            version = "Steam v1.919";
             break;
     default:
         print("Unknown version detected");
@@ -103,7 +114,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919":
 			vars.loading = current.loading == 1;
 			break;
 	}
