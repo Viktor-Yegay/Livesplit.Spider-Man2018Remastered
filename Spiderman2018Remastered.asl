@@ -1,52 +1,64 @@
 /*
 Shoutouts to JHobz for getting me all the addresses required for the EGS version, and big thanks to Canegar 
 for being my guinea pig during the testing phase of the autosplitter :D
+_____________________________________________________________________________________________________________
+
+Scanning Best Practices:
+
+For LOADING  : basically a bool - 0 in game and 1 on loading screen. 
+When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A/7B
+
+For OBJECTIVE: 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
+- You can scan for the following 4Byte values to find the objective address.
+    - 0 on main menu
+    - 648768089 on first cutscene
+    - 3959482847 on swing tutorial
+    - 1081701888 when the objective marker for "Clearing The Way" pops up
+    - at this point, go back to main menu and search for 0 again. Only gonna be one address remaining
 */
 
 state("Spider-Man", "Steam v1.812")
 {
-    int loading      : 0x7AF85D0; // basically a bool
-    uint objective   : 0x701DE44; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah.
-    int docSmack     : 0x5D1EF18; // goes from 166-167 at the final split time when doc gets a big ol smack
-    int acqBackpacks : 0x701B19C; // iz backpacks lul
-    //int obj2     : 0x701DE48
-    //int obj3     : 0x701DE4C
+    int loading      : 0x7AF85D0; 
+    uint objective   : 0x701DE44; 
+    int docSmack     : 0x5D1EF18; // really bad lol, find another one
+    int acqBackpacks : 0x701B19C; // number of collected backpacks, havent bothered maintaining since no one really seems to run backpacks
 }
 
 state("Spider-Man", "EGS v1.812")
 {
-    int loading    : 0x7B08B50; // basically a bool
+    int loading    : 0x7B08B50; 
 } 
 
 state("Spider-Man", "Steam v1.817")
 {
-    int loading    : 0x7AF95D0; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A
-    uint objective : 0x6F3E8D8; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 6F region of memory seems faster, theres a similar one in the 70 region.
+    int loading    : 0x7AF95D0; 
+    uint objective : 0x6F3E8D8; 
 } 
 
 state("Spider-Man", "Steam v1.824")
 {
-    int loading    : 0x7B1A510; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
-    uint objective : 0x6E90258; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
-    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
-    // make sure obj is 0 on main menu
+    int loading    : 0x7B1A510; 
+    uint objective : 0x6E90258; 
 } 
 
 
 state("Spider-Man", "Steam v1.907")
 {
-    int loading    : 0x7B1BA70; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
-    uint objective : 0x6E91288; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
-    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
-    // make sure obj is 0 on main menu
+    int loading    : 0x7B1BA70; 
+    uint objective : 0x6E91288;  
 } 
 
 state("Spider-Man", "Steam v1.919")
 {
-    int loading    : 0x7B1F230; // basically a bool. When scanning, make sure to look for interior loads, checkpoint loads, fast travel loads. Should be around 7A-7B
-    uint objective : 0x6E94958; // 4byte in cheat engine, has to be uint to read correctly for some reason. Something something signed/unsigned blah blah. 
-    // 6E-6F region of memory seems faster, theres a similar one in the 70 region.
-    // make sure obj is 0 on main menu
+    int loading    : 0x7B1F230;
+    uint objective : 0x6E94958;
+} 
+
+state("Spider-Man", "Steam v1.1006")
+{
+    int loading    : 0x7B63A10;
+    uint objective : 0x6ED6FA8;
 } 
 
 init
@@ -72,6 +84,9 @@ init
             break;
         case 140001280 : 
             version = "Steam v1.919";
+            break;
+        case 140296192 : 
+            version = "Steam v1.1006";
             break;
     default:
         print("Unknown version detected");
@@ -114,7 +129,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": case "Steam v1.1006":
 			vars.loading = current.loading == 1;
 			break;
 	}
@@ -128,13 +143,6 @@ start
 
 split 
 { 	return
-    //Ignore the following commented out objective values, only for testing/updating purposes.
-    // You can scan for the following 4Byte values to find the objective address.
-    // 0 on main menu
-    // 648768089 on first cutscene
-    // 3959482847 on swing tutorial
-    // 1081701888 when the objective marker for "Clearing The Way" pops up
-    // at this point, go back to main menu and search for 0 again. Only gonna be one address remaining
     (current.objective == 1230831290) && (old.objective != 1230831290) || // Moves from Clearing The Way - The Main Event 
 	(current.objective == 911656026)  && (old.objective != 911656026)  || // Moves from The Main Event - My OTHER Other Job 
     (current.objective == 316826671)  && (old.objective != 316826671)  || // Moves from My OTHER Other Job - Keeping the Peace 
