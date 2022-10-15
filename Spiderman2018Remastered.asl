@@ -61,6 +61,12 @@ state("Spider-Man", "Steam v1.1006")
     uint objective : 0x6ED6FA8;
 } 
 
+state("Spider-Man", "Steam v1.1014")
+{
+    int loading    : 0x7B69B30;
+    uint objective : 0x6EDB228;
+} 
+
 init
 {
     vars.loading = false;
@@ -87,6 +93,9 @@ init
             break;
         case 140296192 : 
             version = "Steam v1.1006";
+            break;
+        case 140320768 : 
+            version = "Steam v1.1014";
             break;
     default:
         print("Unknown version detected");
@@ -129,7 +138,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": case "Steam v1.1006":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": case "Steam v1.1006": case "Steam v1.1014":
 			vars.loading = current.loading == 1;
 			break;
 	}
