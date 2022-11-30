@@ -67,6 +67,12 @@ state("Spider-Man", "Steam v1.1014")
     uint objective : 0x6EDB228;
 } 
 
+state("Spider-Man", "Steam v1.1122")
+{
+    int loading    : 0x7B71F30;
+    uint objective : 0x6EE3568;
+} 
+
 init
 {
     vars.loading = false;
@@ -96,6 +102,9 @@ init
             break;
         case 140320768 : 
             version = "Steam v1.1014";
+            break;
+        case 140357632 : 
+            version = "Steam v1.1122";
             break;
     default:
         print("Unknown version detected");
@@ -138,7 +147,8 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": case "Steam v1.1006": case "Steam v1.1014":
+		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": 
+        case "Steam v1.1006": case "Steam v1.1014": case "Steam v1.1122":
 			vars.loading = current.loading == 1;
 			break;
 	}
@@ -150,6 +160,7 @@ start
 	return (old.objective == 0 && current.objective == 648768089);
 }
 
+/* commenting out until i have the motivation to come back and polish this mess
 split 
 { 	return
     (current.objective == 1230831290) && (old.objective != 1230831290) || // Moves from Clearing The Way - The Main Event 
@@ -203,6 +214,8 @@ split
 //316826671
 
 //3145605413 is kinda ehhhh cause its basically the "leave the lab" obj. Keeping for now cause it might work... but might not.
+*/
+
 
 isLoading
 {
