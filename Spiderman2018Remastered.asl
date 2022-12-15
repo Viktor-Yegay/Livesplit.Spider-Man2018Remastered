@@ -67,10 +67,10 @@ state("Spider-Man", "Steam v1.1014")
     uint objective : 0x6EDB228;
 } 
 
-state("Spider-Man", "Steam v1.1122")
+state("Spider-Man", "Steam v1.1212")
 {
-    int loading    : 0x7B71F30;
-    uint objective : 0x6EE3568;
+    int loading    : 0x7B72130;
+    uint objective : 0x6EE3578;
 } 
 
 init
@@ -104,13 +104,17 @@ init
             version = "Steam v1.1014";
             break;
         case 140357632 : 
-            version = "Steam v1.1122";
+            version = "Steam v1.1212";
             break;
     default:
         print("Unknown version detected");
         return false;
     }
 }
+
+
+[4932]  
+
 
 startup
   {
@@ -148,7 +152,7 @@ update
 		switch (version) 
 	{
 		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": 
-        case "Steam v1.1006": case "Steam v1.1014": case "Steam v1.1122":
+        case "Steam v1.1006": case "Steam v1.1014": case "Steam v1.1212":
 			vars.loading = current.loading == 1;
 			break;
 	}
