@@ -112,10 +112,6 @@ init
     }
 }
 
-
-[4932]  
-
-
 startup
   {
 		if (timer.CurrentTimingMethod == TimingMethod.RealTime)
