@@ -73,6 +73,12 @@ state("Spider-Man", "Steam v1.1212")
     uint objective : 0x6EE3578;
 } 
 
+state("Spider-Man", "Steam v2.217")
+{
+    int loading    : 0x7B720D0;
+    uint objective : 0x7091304;
+} 
+
 init
 {
     vars.loading = false;
@@ -105,6 +111,9 @@ init
             break;
         case 140357632 : 
             version = "Steam v1.1212";
+            break;
+        case 140357632 : 
+            version = "Steam v2.217";
             break;
     default:
         print("Unknown version detected");
@@ -216,6 +225,10 @@ split
 //3145605413 is kinda ehhhh cause its basically the "leave the lab" obj. Keeping for now cause it might work... but might not.
 */
 
+update
+{
+    print(modules.First().ModuleMemorySize.ToString());
+}
 
 isLoading
 {
