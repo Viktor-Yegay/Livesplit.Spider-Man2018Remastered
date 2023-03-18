@@ -67,12 +67,6 @@ state("Spider-Man", "Steam v1.1014")
     uint objective : 0x6EDB228;
 } 
 
-state("Spider-Man", "Steam v1.1212")
-{
-    int loading    : 0x7B72130;
-    uint objective : 0x6EE3578;
-} 
-
 state("Spider-Man", "Steam v2.217")
 {
     int loading    : 0x7B720D0;
@@ -108,9 +102,6 @@ init
             break;
         case 140320768 : 
             version = "Steam v1.1014";
-            break;
-        case 140357632 : 
-            version = "Steam v1.1212";
             break;
         case 140357632 : 
             version = "Steam v2.217";
