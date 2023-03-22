@@ -19,7 +19,7 @@ For OBJECTIVE: 4byte in cheat engine, has to be uint to read correctly for some 
 
 state("Spider-Man", "Steam v1.812")
 {
-    int loading      : 0x7AF85D0; 
+    bool loading      : 0x7AF85D0; 
     uint objective   : 0x701DE44; 
     int docSmack     : 0x5D1EF18; // really bad lol, find another one
     int acqBackpacks : 0x701B19C; // number of collected backpacks, havent bothered maintaining since no one really seems to run backpacks
@@ -27,49 +27,49 @@ state("Spider-Man", "Steam v1.812")
 
 state("Spider-Man", "EGS v1.812")
 {
-    int loading    : 0x7B08B50; 
+    bool loading    : 0x7B08B50; 
 } 
 
 state("Spider-Man", "Steam v1.817")
 {
-    int loading    : 0x7AF95D0; 
+    bool loading    : 0x7AF95D0; 
     uint objective : 0x6F3E8D8; 
 } 
 
 state("Spider-Man", "Steam v1.824")
 {
-    int loading    : 0x7B1A510; 
+    bool loading    : 0x7B1A510; 
     uint objective : 0x6E90258; 
 } 
 
 
 state("Spider-Man", "Steam v1.907")
 {
-    int loading    : 0x7B1BA70; 
+    bool loading    : 0x7B1BA70; 
     uint objective : 0x6E91288;  
 } 
 
 state("Spider-Man", "Steam v1.919")
 {
-    int loading    : 0x7B1F230;
+    bool loading    : 0x7B1F230;
     uint objective : 0x6E94958;
 } 
 
 state("Spider-Man", "Steam v1.1006")
 {
-    int loading    : 0x7B63A10;
+    bool loading    : 0x7B63A10;
     uint objective : 0x6ED6FA8;
 } 
 
 state("Spider-Man", "Steam v1.1014")
 {
-    int loading    : 0x7B69B30;
+    bool loading    : 0x7B69B30;
     uint objective : 0x6EDB228;
 } 
 
 state("Spider-Man", "Steam v2.217")
 {
-    int loading    : 0x7B720D0;
+    bool loading    : 0x7B720D0;
     uint objective : 0x7091304;
 } 
 
@@ -140,19 +140,10 @@ onStart
 
 update
 {
-//DEBUG CODE 
-//print(current.loading.ToString()); 
+//DEBUG CODE
+//print(modules.First().ModuleMemorySize.ToString());
+print(current.loading.ToString()); 
 //print(current.objective.ToString());
-
-        //Use cases for each version of the game listed in the State method
-		switch (version) 
-	{
-		case "Steam v1.812": case "Steam v1.817": case "EGS v1.812": case "Steam v1.824": case "Steam v1.907": case "Steam v1.919": 
-        case "Steam v1.1006": case "Steam v1.1014": case "Steam v1.1212":
-			vars.loading = current.loading == 1;
-			break;
-	}
-
 }
 
 start
@@ -216,14 +207,9 @@ split
 //3145605413 is kinda ehhhh cause its basically the "leave the lab" obj. Keeping for now cause it might work... but might not.
 */
 
-update
-{
-    print(modules.First().ModuleMemorySize.ToString());
-}
-
 isLoading
 {
-    return vars.loading;
+    return current.loading;
 }
 
 exit
