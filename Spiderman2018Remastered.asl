@@ -73,6 +73,12 @@ state("Spider-Man", "Steam v2.217")
     uint objective : 0x7091304;
 } 
 
+state("Spider-Man", "Steam v2.512")
+{
+    bool loading    : 0x7B74190;
+    uint objective : 0x6EE5658;
+} 
+
 init
 {
     vars.loading = false;
@@ -105,6 +111,9 @@ init
             break;
         case 140357632 : 
             version = "Steam v2.217";
+            break;
+        case 140431360 : 
+            version = "Steam v2.512";
             break;
     default:
         print("Unknown version detected");
