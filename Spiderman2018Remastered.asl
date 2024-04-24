@@ -244,6 +244,7 @@ split
     (current.objective == 3934225188) && (current.final == 3) && (old.final == 6) || // 44 Pax in Bello / Пакс ин белло
 
     // DLC The Heist / Ограбление
+    (current.objective  == 4005150524) && (old.objective  != 4005150524) || // Start of DLC The Heist     / Начало DLC Ограбление
     (current.objective  == 3556406812) && (old.objective  == 3045455919) || //  1 The Maria / "Мария"
     (current.objective  == 1557540777) && (current.arson  == 0) && (old.arson == 257) || //  2 The Trouble with Arson / Поджигатели
     (current.objective  == 643598106)  && (old.objective  == 1298453331) || //  3 Long Lost Loot / Утраченная добыча
@@ -256,6 +257,7 @@ split
     (current.objective  == 2079938729) && (old.objective  == 200786147)  || // 10 Follow the Money / Жизнь по средствам
 
     // DLC Turf Wars / Войны банд
+    (current.objective  == 2295251211) && (old.objective  != 2295251211) || // Start of DLC Turf Wars     / Начало DLC Войны банд
     (current.objective  == 4160888572) && (old.objective  == 3550084153) || //  1 Blindsided / Ошеломление
     (current.objective  == 2145992100) && (old.objective  == 1016982143) || //  2 The Bar With No Name / Безымянный бар
     (current.objective  == 2007888496) && (current.hand   == 0) && (old.hand == 4294967295) || //  3 Jury Rigging / На скорую руку
@@ -266,6 +268,7 @@ split
     (current.objective  == 1134081948) && (old.objective  == 680423152)  || //  8 Bring the Hammer Down / Обезвредить Кувалду
 
     // DLC Silver Lining / Серебрянный луч
+    (current.objective  == 1262575096) && (old.objective  != 1262575096) || // Start of DLC Silver Lining / Начало DLC Серебряный луч
     (current.objective  == 2348154884) && (old.objective  == 4243665042) || //  1 Old Friends / Старые друзья
     (current.objective  == 2042748813) && (old.objective  == 2547644565) || //  2 Season 3 / Третий сезон
     (current.objective  == 227408241)  && (current.hand   == 0) && (old.hand == 4294967295) || //  3 Rio Bravo / Рио Браво
